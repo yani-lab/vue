@@ -14,13 +14,13 @@
     </el-row>
     <el-form style="background-color: rgb(255, 255, 255);" label-width="100px">
       <el-row>
-        <el-menu style="text-align: center;" mode="horizontal" background-color="#4993f4" router="true">
-          <el-menu-item route="/Home" style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center; margin-left: 662px; margin-top: 0px;" index="3">首页</el-menu-item>
-          <el-menu-item route="/Investment"  style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center;" index="4">我要投资</el-menu-item>
-          <el-menu-item route="/Loan" style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center;" index="5">我要借款</el-menu-item>
-          <el-menu-item route="/PersonalCenterMain" style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center;" index="6">个人中心</el-menu-item>
-          <el-menu-item route="/Home" style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center;" index="7">资产详情</el-menu-item>
-          <el-menu-item route="/Home" style="height: 86px; color: rgb(244, 237, 237); background-color: rgb(62, 143, 248); font-size: 18px; text-align: center;" index="8">登录记录</el-menu-item>
+        <el-menu style="text-align: center;" mode="horizontal" background-color="pink" router="true">
+          <el-menu-item route="/Home" style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center; margin-left: 662px; margin-top: 0px;" index="3">首页</el-menu-item>
+          <el-menu-item route="/Investment"  style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center;" index="4">我要投资</el-menu-item>
+          <el-menu-item route="/Loan" style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center;" index="5">我要借款</el-menu-item>
+          <el-menu-item route="/PersonalCenterMain" style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center;" index="6">个人中心</el-menu-item>
+          <el-menu-item route="/PersonalCenterMain" style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center;" index="7">资产详情</el-menu-item>
+          <el-menu-item route="/Home" style="height: 86px; color: rgb(244, 237, 237); background-color: pink; font-size: 18px; text-align: center;" index="8">登录记录</el-menu-item>
         </el-menu>
       </el-row>
     </el-form>
