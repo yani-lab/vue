@@ -52,5 +52,13 @@ export default{
   },
   setParamObj(state,payload){
     this.state.paramObj=payload.paramObj;
-  }
+  },
+	setUserinfo: (state, payload) => {
+		//通过载荷为全局参数赋值，相当于setter
+		state.userinfo = payload.userinfo;
+	},
+	setAccount: (state, payload) => {
+		//通过载荷为全局参数赋值，相当于setter
+		state.account = payload.account;
+	}
 }

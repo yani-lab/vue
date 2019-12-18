@@ -71,9 +71,15 @@
 					            type: 'success'
 					        });
 					        //存储用户对象
-					        this.$store.commit('setUser',{
-					            user:resp.data.data
-					        });
+					        this.$store.commit('setUser',
+							{user:resp.data.data.user}
+							);
+							 this.$store.commit('setUserinfo',{
+							    userinfo:resp.data.data.userinfo
+							});
+							 this.$store.commit('setAccount',{
+							    account:resp.data.data.account
+							});
 					        //登录成功就直接跳入到首页吧
 					        this.$router.push({
 					            path:'/Investment'

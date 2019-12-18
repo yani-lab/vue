@@ -38,4 +38,10 @@ export default{
   getParamObj:(state) =>{
     return state.paramObj;
   },
+	getAccount: function(state) {
+		return state.account;
+	},
+	getUserinfo: function(state) {
+		return state.userinfo;
+	}
 }

@@ -7,6 +7,7 @@ export default {
   ///////////// 这是通用请求挂载处 start /////////////
   'VERIFICATION':'/base/verificationCode',  //获取验证码
   'USER_LOGIN':'/user/login',//登录
+	'SELECT_PRODUCTTABLE':'http://localhost:8080/producttable/list',//查询产品
 
 
   ///////////// 资产模块请求配置  end /////////////
