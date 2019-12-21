@@ -170,7 +170,8 @@
                     basicInformation:true,
                     vehicleInformation: false,
                     confirm:false,
-                    carryOut:false
+                    carryOut:false,
+										
                 }
             }
         },
@@ -195,7 +196,7 @@
                 this.isShowData.confirm = false;
                 this.isShowData.carryOut = true;
                 this.stepsActive = 4;
-            }
+            },
         },
         created() {
             commonUtils.init(this);

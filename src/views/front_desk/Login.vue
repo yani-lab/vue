@@ -61,6 +61,7 @@
                     userName: this.name,
                     userPwd: this.password,
                 };
+<<<<<<< HEAD
 // 				if(this.verificationCode.toLowerCase()==this.yzm.toLowerCase()){
 // 					let url = this.axios.urls.USER_LOGIN;
 // 					this.axios.post(url, params).then(resp => {
@@ -116,6 +117,68 @@
 //             this.changeVerificationCode();
 //             //初始化工具类
 //             commonUtils.init(this);
+=======
+				if(this.verificationCode.toLowerCase()==this.yzm.toLowerCase()){
+					let url = this.axios.urls.USER_LOGIN;
+					this.axios.post(url, params).then(resp => {
+					    if(resp.data.code == 1) {
+					        //提示登录成功
+					        this.$message({
+					            message: "登录成功",
+					            type: 'success'
+					        });
+					        //存储用户对象
+					        this.$store.commit('setUser',
+							{user:resp.data.data.user}
+							);
+							 this.$store.commit('setUserinfo',{
+							    userinfo:resp.data.data.userinfo
+							});
+							 this.$store.commit('setAccount',{
+							    account:resp.data.data.account
+							});
+					        //登录成功就直接跳入到首页吧
+					        this.$router.push({
+					            path:'/Investment'
+					        })
+					    }else{
+					        this.$message({
+					            message: resp.data.msg,
+					            type: 'error'
+					        });
+					    }
+					}).catch(resp => {
+					    this.$message({
+					        message: resp.data.msg,
+					        type: 'error'
+					    });
+					});
+				}
+				else{
+					alert('验证码错误，请重新输入');
+					this.verificationCode='';
+					this.changeVerificationCode();
+				}
+            },
+            //更新验证码
+            changeVerificationCode(){
+                let url = this.axios.urls.VERIFICATION;
+                this.axios.get(url, {}).then(resp => {
+					console.log(resp.data.data.path);
+					this.yzm=resp.data.data.yzm;
+					this.verificationCodeSrc=resp.data.data.path;
+                }).catch(resp => {
+                    console.log(resp);
+                });
+            }
+			
+        },
+        created() {
+            //初始化验证码
+            this.changeVerificationCode();
+            //初始化工具类
+            commonUtils.init(this);
+>>>>>>> 81616682e577bf95d6a1b098bc8cbcdda2c75ee0
         }
 }
     }

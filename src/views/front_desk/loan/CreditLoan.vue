@@ -3,7 +3,7 @@
     <el-card class="box-card">
       <div class="clearfix" slot="header">
         <el-steps :active="showIndex">
-          <el-step title="信用带说明" icon="el-icon-edit">
+          <el-step title="信用贷说明" icon="el-icon-edit">
           </el-step>
           <el-step title="填写申请借款表单" icon="el-icon-edit">
           </el-step>
@@ -24,9 +24,9 @@
               <div slot="header" class="clearfix" style="color: orangered"><strong>贷 款 条 件：</strong></div><br/><br/><br/>
               <!--  主 体  -->
               <div class="text item">
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基本资料填写&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="danger" size="mini" icon="el-icon-check" circle></el-button></span><br/><br/><br/>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份认证通过&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="danger" size="mini" icon="el-icon-check" circle></el-button></span><br/><br/><br/>
-                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资料认证完善&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="danger" size="mini" icon="el-icon-check" circle></el-button></span><br/><br/><br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基本资料填写&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="success" size="mini" icon="el-icon-check" circle ></el-button></span><br/><br/><br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份认证通过&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="danger" size="mini" icon="el-icon-warning-outline" v-if="userinfo.realAuthId==0" circle></el-button><el-button type="success" size="mini" icon="el-icon-check" v-if="userinfo.realAuthId!=0" circle ></el-button></span><br/><br/><br/>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信用积分足够&nbsp;&nbsp;&nbsp;&nbsp;<el-button type="success" size="mini" icon="el-icon-check" v-if="account.remainBorrowLimit>=producttable.lineofcredit" circle></el-button><el-button type="danger" size="mini" icon="el-icon-warning-outline" v-if="account.remainBorrowLimit<producttable.lineofcredit" circle></el-button></span><br/><br/><br/>
               </div><br/>
             </el-card>
           </el-col>
@@ -41,7 +41,7 @@
                 <p>1. 必须满足贷款的条件方可进行贷款</p>
                 <p>2. 贷款申请需申请人认真并酌情填写</p>
                 <p>3. 贷款申请内容须遵守一定的规范</p>
-                <p>4. 贷款申请人最高可贷 10000 元</p>
+                <p>4. 贷款申请人最高可贷 {{producttable.money}} 元</p>
                 <p>5. 申请有流程，请耐心等待，♪(^∇^*)</p>
                 <p>6. 关于贷款，我方具有绝对的解释权</p>
               </div><br/>
@@ -60,15 +60,17 @@
                 <p align="left">2、工作人员进行审核</p>
                 <p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style="color: orangered;font-size: 34px" class="el-icon-bottom"></i></p>
                 <p align="left">3、审核通过，资金到账</p>
-                <p align="right" style="color: palevioletred;"><i class="el-icon-warning-outline"></i> 贷款申请不合格，不予通过！</p>
+                <p align="right" style="color: palevioletred;" v-if="userinfo.realAuthId==0"><i class="el-icon-warning-outline"></i> 贷款申请不合格，不予通过！</p>
+								 <p align="right" style="color: palevioletred;" v-else-if="account.remainBorrowLimit<producttable.lineofcredit"><i class="el-icon-warning-outline"></i> 贷款申请不合格，不予通过！</p>
               </div>
             </el-card>
           </el-col>
         </el-row><br/><br/>
         <el-row>
             <p style="color: green;" align="right">我已熟知贷款信息&nbsp;&nbsp;<i style="font-size: 18px" class="el-icon-bottom-right"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-              <el-button type="success" round @click="showIndex ++" style="float: right">我要贷款</el-button>
-            </p>
+              <el-button type="success" disabled="disabled" round @click="showIndex ++" style="float: right" v-if="userinfo.realAuthId==0||account.remainBorrowLimit<producttable.lineofcredit">我要贷款</el-button>
+							<el-button type="success" round @click="showIndex ++" style="float: right" v-else-if="account.remainBorrowLimit>=producttable.lineofcredit||userinfo.realAuthId!=0">我要贷款</el-button>
+						</p>
         </el-row>
       </el-form>
 
@@ -206,6 +208,7 @@
             return {
                 showIndex:1,
                 //当前页面的几个下拉框
+								producttable: [],
                 options:{
                     //年利率
                     annualInterestRate:[],
@@ -224,6 +227,8 @@
                     description:null
 
                 },
+								userinfo:this.$store.getters.getUserinfo,
+								account:this.$store.getters.getAccount,
                 //表单验证
                 rules:{
                     title:[{
@@ -264,7 +269,8 @@
                 repaymentInfo:{
                     //表格占时数据
                     refundDetails:[],
-                }
+                },
+							
             }
         },
         methods:{
@@ -296,15 +302,22 @@
                     //这是贷款完成
                     this.showIndex ++;
                 })
-            }
+            },
+						getParams:function(){
+							let row=this.$router.history.current.query.producttable;
+							this.producttable=row;
+							
+						},
         },
         created() {
+					this.getParams();
             commonUtils.init(this);
             //加载下拉框
             commonUtils.getDictSelect("annual_interest_rate", "options.annualInterestRate")
             commonUtils.getDictSelect("repayment", "options.repayment")
             commonUtils.getDictSelect("credit_repayment_period", "options.creditRepaymentPeriod")
-        }
+        },
+				
     }
 </script>
 

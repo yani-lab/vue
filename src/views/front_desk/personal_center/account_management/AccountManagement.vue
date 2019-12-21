@@ -7,21 +7,21 @@
       <el-row :gutter="25">
         <h1></h1>
         <el-col :span="8">
-          <el-card class="box-card" style="background-color: rgb(73, 147, 244);">
+          <el-card class="box-card" style="background-color: pink;">
             <p>账号余额
               <i class="el-icon-wallet"></i>
             </p>
             <strong>{{statistics.usableAmount}}</strong>元</el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card" style="background-color:  rgb(73, 147, 244);">
+          <el-card class="box-card" style="background-color:  pink;">
             <p>代收利息
               <i class="el-icon-info"></i>
             </p>
             <strong>{{statistics.unReceiveInterest}}</strong>元</el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card" style="background-color:  rgb(73, 147, 244);">
+          <el-card class="box-card" style="background-color:  pink;">
             <p>代收本金
               <i class="el-icon-warning"></i>
             </p>
@@ -30,14 +30,14 @@
       </el-row>
       <el-row style="margin-top: 17px;" :gutter="25">
         <el-col :span="8">
-          <el-card class="box-card" style="background-color:  rgb(73, 147, 244);">
+          <el-card class="box-card" style="background-color:  pink;">
             <p>账户授信额度
               <i class="el-icon-user"></i>
             </p>
             <strong>{{statistics.borrowLimit}}</strong>元</el-card>
         </el-col>
         <el-col :span="8">
-          <el-card class="box-card" style="background-color:  rgb(73, 147, 244);">
+          <el-card class="box-card" style="background-color:  pink;">
             <p>累计收益
               <i class="el-icon-s-claim"></i>
             </p>

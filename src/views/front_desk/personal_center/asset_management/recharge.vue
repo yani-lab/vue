@@ -20,24 +20,20 @@
             return {
                 //这是用户充值
                 formeAmount:{
-                    amount:null
-                }
+                    amount:null,
+
+                },
+                // user:this.$store.getters.getUser,
             }
         },
         methods:{
             submit(){
                 //请求充值方法进行充值
                 let url = this.axios.urls.ASSETS_MONEYRECHARGE_RECHARGE;
-                this.$store.commit("setCurrUser", {
-                  currUser: {
-                    userNo: user.userNo,
-                    id: user.id
-                  }
-                });
-                let params={
-                  usableAmount:this.formeAmount.amount,
-                  
-                }
+                // let params={
+                //   usableAmount:this.formeAmount.amount,
+                //   userId:this.user.userId;
+                // }
             }
         },
         created() {
