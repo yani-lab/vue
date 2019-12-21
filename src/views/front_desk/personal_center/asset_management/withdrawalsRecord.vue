@@ -2,10 +2,10 @@
   <div  style="padding: 20px;background-color: #FFFFFF">
 
               <el-row>
-                <el-col style="font-weight: bold;" :span="12">充值交易ID：
+                <el-col style="font-weight: bold;" :span="12">提现交易ID：
                   <el-input    v-model="queryParams.titleid" style="height: 0px; width: 58%;" placeholder="请输入内容" size="medium" clearable show-word-limit type="text"></el-input>
                 </el-col>
-                <el-col style="font-weight: bold;" :span="12" >充值交易时间：
+                <el-col style="font-weight: bold;" :span="12" >提现交易时间：
                   <el-date-picker
                     v-model="queryParams.tradeTime"
                     type="daterange"
@@ -26,9 +26,9 @@
             </el-table-column>
 
            
-            <el-table-column value-format="yyyy-MM-dd-HH-mm-ss" prop="tradeTime" label="充值时间" min-width="4">
+            <el-table-column value-format="yyyy-MM-dd-HH-mm-ss" prop="tradeTime" label="提现时间" min-width="4">
             </el-table-column>1
-            <el-table-column prop="amount" label="充值金额" min-width="4">
+            <el-table-column prop="amount" label="提现金额" min-width="4">
             </el-table-column>
 
           </el-table>

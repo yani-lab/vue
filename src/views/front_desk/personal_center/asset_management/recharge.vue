@@ -28,9 +28,16 @@
             submit(){
                 //请求充值方法进行充值
                 let url = this.axios.urls.ASSETS_MONEYRECHARGE_RECHARGE;
-                commonUtils.doAjaxPost(url, this.formeAmount, (data) => {
-                  this.formeAmount.amount = null;
-                })
+                this.$store.commit("setCurrUser", {
+                  currUser: {
+                    userNo: user.userNo,
+                    id: user.id
+                  }
+                });
+                let params={
+                  usableAmount:this.formeAmount.amount,
+                  
+                }
             }
         },
         created() {
@@ -39,6 +46,6 @@
     }
 </script>
 
-<style scoped>
+<style>
 
 </style>

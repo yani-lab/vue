@@ -23,7 +23,7 @@
             </el-col>
             <el-col :span="8">
               <img id="img" :src="this.verificationCodeSrc" width="116px" height="40px" @click="changeVerificationCode" >
-			 
+
             </el-col>
           </el-row>
         </el-form-item>
@@ -33,7 +33,7 @@
       </el-form>
     </el-card>
   </el-main>
- 
+
 </template>
 
 
@@ -55,68 +55,69 @@
             }
         },
         methods: {
-			
+
             doSubmit: function() {
                 let params = {
                     userName: this.name,
                     userPwd: this.password,
                 };
-				if(this.verificationCode.toLowerCase()==this.yzm.toLowerCase()){
-					let url = this.axios.urls.USER_LOGIN;
-					this.axios.post(url, params).then(resp => {
-					    if(resp.data.code == 1) {
-					        //提示登录成功
-					        this.$message({
-					            message: "登录成功",
-					            type: 'success'
-					        });
-					        //存储用户对象
-					        this.$store.commit('setUser',{
-					            user:resp.data.data
-					        });
-					        //登录成功就直接跳入到首页吧
-					        this.$router.push({
-					            path:'/Investment'
-					        })
-					    }else{
-					        this.$message({
-					            message: resp.data.msg,
-					            type: 'error'
-					        });
-					    }
-					}).catch(resp => {
-					    this.$message({
-					        message: resp.data.msg,
-					        type: 'error'
-					    });
-					});
-				}
-				else{
-					alert('验证码错误，请重新输入');
-					this.verificationCode='';
-					this.changeVerificationCode();
-				}
-            },
-            //更新验证码
-            changeVerificationCode(){
-                let url = this.axios.urls.VERIFICATION;
-                this.axios.get(url, {}).then(resp => {
-					console.log(resp.data.data.path);
-					this.yzm=resp.data.data.yzm;
-					this.verificationCodeSrc=resp.data.data.path;
-                }).catch(resp => {
-                    console.log(resp);
-                });
-            }
-			
-        },
-        created() {
-            //初始化验证码
-            this.changeVerificationCode();
-            //初始化工具类
-            commonUtils.init(this);
+// 				if(this.verificationCode.toLowerCase()==this.yzm.toLowerCase()){
+// 					let url = this.axios.urls.USER_LOGIN;
+// 					this.axios.post(url, params).then(resp => {
+// 					    if(resp.data.code == 1) {
+// 					        //提示登录成功
+// 					        this.$message({
+// 					            message: "登录成功",
+// 					            type: 'success'
+// 					        });
+// 					        //存储用户对象
+// 					        this.$store.commit('setUser',{
+// 					            user:resp.data.data
+// 					        });
+// 					        //登录成功就直接跳入到首页吧
+// 					        this.$router.push({
+// 					            path:'/Investment'
+// 					        })
+// 					    }else{
+// 					        this.$message({
+// 					            message: resp.data.msg,
+// 					            type: 'error'
+// 					        });
+// 					    }
+// 					}).catch(resp => {
+// 					    this.$message({
+// 					        message: resp.data.msg,
+// 					        type: 'error'
+// 					    });
+// 					});
+// 				}
+// 				else{
+// 					alert('验证码错误，请重新输入');
+// 					this.verificationCode='';
+// 					this.changeVerificationCode();
+// 				}
+//             },
+//             //更新验证码
+//             changeVerificationCode(){
+//                 let url = this.axios.urls.VERIFICATION;
+//                 this.axios.get(url, {}).then(resp => {
+// 					console.log(resp.data.data.path);
+// 					this.yzm=resp.data.data.yzm;
+// 					this.verificationCodeSrc=resp.data.data.path;
+//                 }).catch(resp => {
+//                     console.log(resp);
+//                 });
+//             }
+//
+//         },
+//         created() {
+//           //是否是
+//             //初始化验证码
+//             this.changeVerificationCode();
+//             //初始化工具类
+//             commonUtils.init(this);
         }
-
+}
     }
 </script>
 

@@ -43,7 +43,7 @@ import Login from "../views/front_desk/Login";
 ////////////       这是个人中心的页面导入 (开始） /////////////////////////////////////////
 import test from "../views/front_desk/personal_center/account_management/test";
 ////////////        用户提现充值记录   ///////////////////////////
-import transaction_record from "../views/front_desk/personal_center/asset_management/transaction_record";
+import transaction_record from "../views/front_desk/personal_center/asset_management/transaction_record";//
 // ////////////          用户提现      ///////////////////////////
 import money_withdraw from "../views/front_desk/personal_center/asset_management/money_withdraw";
 //借款管理
@@ -57,7 +57,8 @@ import userwithdrawal from "../views/front_desk/personal_center/asset_management
 import Recharge from "../views/front_desk/personal_center/asset_management/Recharge";
 
 //这是用户提现记录
-//import withdrawalsRecord from "../views/front_desk/personal_center/asset_management/withdrawalsRecord";
+import withdrawalsRecord from "../views/front_desk/personal_center/asset_management/withdrawalsRecord";//
+//用户提现
 import Withdraw_deposit from "../views/front_desk/personal_center/asset_management/Withdraw_deposit";
 ////////////       这是个人中心的页面导入 （结束） /////////////////////////////////////////
 
@@ -139,21 +140,21 @@ export default new Router({
           path: '/CreditLoan',
           name: 'CreditLoan',
           component: CreditLoan,
-          meta: { requiresAuth: true } // 添加表示需要验证
+          // meta: { requiresAuth: true } // 添加表示需要验证
         },
         //车易贷
         {
           path: '/CarLoan',
           name: 'CarLoan',
           component: CarLoan,
-          meta: { requiresAuth: true } // 添加表示需要验证
+          // meta: { requiresAuth: true } // 添加表示需要验证
         },
         //房易贷
         {
           path: '/HousingLoan',
           name: 'HousingLoan',
           component: HousingLoan,
-          meta: { requiresAuth: true } // 添加表示需要验证
+          // meta: { requiresAuth: true } // 添加表示需要验证
         },
         {
           path: '/Investment',
@@ -163,68 +164,74 @@ export default new Router({
           path: '/InvestmentDetails',
           name: 'InvestmentDetails',
           component: InvestmentDetails,
-          meta: { requiresAuth: true } // 添加表示需要验证
+          // meta: { requiresAuth: true } // 添加表示需要验证
         },{
           path: '/PersonalCenterMain',
           name: 'PersonalCenterMain',
           component: PersonalCenterMain,
-          meta: { requiresAuth: true }, // 添加表示需要验证
+          // meta: { requiresAuth: true }, // 添加表示需要验证
           //这是个人中心子页面挂载
           children:[
             {
               path: '/AccountManagement',
               name: 'AccountManagement',
               component: AccountManagement,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             }, {
               path: '/PersonalData',
               name: 'PersonalData',
               component: PersonalData,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },{
               path: '/Authentication',
               name: 'Authentication',
               component: Authentication,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },
             //借款管理
             {
               path: '/loanManagement',
               name: 'loanManagement',
               component: loanManagement,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },
             //投资管理
             {
               path: '/lnvestmentManagement',
               name: 'lnvestmentManagement',
               component: lnvestmentManagement,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },{
               //用户提现充值记录
               path: '/transaction_record',
               name: 'transaction_record',
               component: transaction_record,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
+            },{
+              //用户提现充值记录
+              path: '/withdrawalsRecord',
+              name: 'withdrawalsRecord',
+              component: withdrawalsRecord,
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },
             {
               path: '/userwithdrawal',
               name: 'userwithdrawal',
               component: userwithdrawal,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },
             //这是客户充值
             {
               path: '/Recharge',
               name: 'Recharge',
               component: Recharge,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             },
             {
               path: '/Withdraw_deposit',
               name: 'Withdraw_deposit',
               component: Withdraw_deposit,
-              meta: { requiresAuth: true } // 添加表示需要验证
+              // meta: { requiresAuth: true } // 添加表示需要验证
             }
           ]
         },{
